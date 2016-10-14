@@ -185,6 +185,7 @@ namespace WMS.Controllers
         {
             string empNo = "";
             int cardno = Convert.ToInt32(emp.CardNo);
+            emp.EmpNo = emp.EmpID.ToString();
             emp.CardNo = cardno.ToString("0000000000");
             if(db.Emps.Where(aa=>aa.Status==true && aa.Deleted!=true).Count()>=Convert.ToInt32(GlobalVaribales.NoOfEmps))
                 ModelState.AddModelError("EmpNo", "Active Number of employees are exceeded from license ");
@@ -416,7 +417,7 @@ namespace WMS.Controllers
                     }
                     emp.EmpNo = emp.EmpNo.ToUpper();
                     emp.Deleted = false;
-                    db.Entry(emp).State = EntityState.Modified;
+                    db.Entry(emp).State = System.Data.Entity.EntityState.Modified;
                    
                     db.SaveChanges();
                     int _userID = Convert.ToInt32(Session["LogedUserID"].ToString());

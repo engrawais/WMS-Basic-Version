@@ -227,7 +227,7 @@ namespace WMS.Controllers
             if (ModelState.IsValid)
             {
                 User LoggedInUser = Session["LoggedUser"] as User;
-                db.Entry(lvapplication).State = EntityState.Modified;
+                db.Entry(lvapplication).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 int _userID = Convert.ToInt32(Session["LogedUserID"].ToString());
                 HelperClass.MyHelper.SaveAuditLog(_userID, (byte)MyEnums.FormName.Leave, (byte)MyEnums.Operation.Edit, DateTime.Now);
